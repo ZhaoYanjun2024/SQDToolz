@@ -117,7 +117,7 @@ class TektronixDSA70804BTriEdg(InstrumentChannel):    #trigger edge settings
             set_cmd = 'TRIGger:%s:STATE {}' %(self.tri_edg_name), \
             vals =vals.MultiType(vals.Enum('on','off'),vals.Numbers())             #50% min~max voltage
             )              
-
+ 
         self.add_parameter( #query only
         'trigger_state_sys', label = 'Trigger State Sys', unit = 'a.u.',
         get_cmd = 'TRIGger:STATE?', get_parser = str
@@ -743,6 +743,8 @@ class TektronixDSA70804B(VisaInstrument):
         # N=len(wfm_data)
         X=x0+x_incr*(n_x-pt_off)
         Y=y0+y_mult*(wfm_data-y_off)
+        self.X=X
+        self.Y=Y
         plt.plot(X,Y)
         plt.xlabel('Time '+x_unit)
         plt.ylabel('Voltage '+y_unit)

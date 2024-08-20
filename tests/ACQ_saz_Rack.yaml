@@ -1,4 +1,16 @@
 instruments:
+
+
+  src_res:
+    type: sqdtoolz.Drivers.MWS_SGS100A.MWS_SGS100A
+    address: TCPIP::192.168.1.118::INSTR
+    enable_forced_reconnect: true
+    parameters:
+      ref_osc_source:
+        initial_value: 'EXT' #Can be INT or EXT
+      ref_osc_external_freq:
+        initial_value: '10MHz'   #Can be '10MHz', '100MHz', '1000MHz'
+
   MWS_Windfreak_1:
     driver: sqdtoolz.Drivers.MWS_WFSynthHDProV2
     type: MWS_WFSynthHDProV2
@@ -10,7 +22,7 @@ instruments:
       RFoutA.REF_Source:
         initial_value: 'EXT'
       RFoutB.REF_Source:
-        initial_value: 'EXT' 
+        initial_value: 'EXT'
 
   MWS_Windfreak_2:
     driver: sqdtoolz.Drivers.MWS_WFSynthHDProV2
@@ -18,25 +30,14 @@ instruments:
     address: 'COM5'
     enable_forced_reconnect: true
     parameters:
-      EXT_REF_frequency:
+      RFoutA.EXT_REF_frequency:
+        initial_value: 10e6
+      RFoutB.EXT_REF_frequency:
         initial_value: 10e6
       RFoutA.REF_Source:
         initial_value: 'EXT'
       RFoutB.REF_Source:
         initial_value: 'EXT'    
-
-  # MWS_Windfreak_3:
-  #   driver: sqdtoolz.Drivers.MWS_WFSynthHDProV2
-  #   type: MWS_WFSynthHDProV2
-  #   address: 'COM4'##
-  #   enable_forced_reconnect: true
-  #   parameters:
-  #     EXT_REF_frequency:
-  #       initial_value: 10e6
-  #     RFoutA.REF_Source:
-  #       initial_value: 'EXT'
-  #     RFoutB.REF_Source:
-  #       initial_value: 'EXT'    
 
   MWS_Windfreak_3:
     driver: sqdtoolz.Drivers.MWS_WFSynthHDProV2
@@ -51,7 +52,7 @@ instruments:
       RFoutA.REF_Source:
         initial_value: 'EXT'
       RFoutB.REF_Source:
-        initial_value: 'EXT'                 
+        initial_value: 'EXT'          
 
   vna:
     driver: sqdtoolz.Drivers.VNA_Keysight_P9373A #sqdtoolz.Drivers.VNA_Keysight_P9373A
