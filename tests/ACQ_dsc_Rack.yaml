@@ -170,7 +170,7 @@ instruments:
         initial_value: 0.0
       RFOUT.power:
         initial_value: -60
-      RFOUT.pulsemod_state:
+      RFOUT.pulsemod_state: 
         initial_value: 'ON'
       RFOUT.pulsemod_source:
         initial_value: 'EXT'

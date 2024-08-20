@@ -76,7 +76,7 @@ class RS_FSV_SAZ(VisaInstrument):
         plt.xlabel('Frequency (Hz)')
         plt.ylabel('Power (%s)'%self.CalculateUnitPower)
 
-    @property
+    @property 
     def wfm_data(self):
         data_format=self.FormatData
         if data_format=='ASC,0':

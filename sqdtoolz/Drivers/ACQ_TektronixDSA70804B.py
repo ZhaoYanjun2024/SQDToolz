@@ -277,7 +277,7 @@ class TektronixDSA70804B(VisaInstrument):
         self.add_parameter(#query only
         'horizontal_acqlength', label = 'Horizontal Acqlength', unit = 'pts',
         get_cmd = 'HORizontal:ACQLENGTH?', get_parser = int,        
-        )
+        ) 
         # For query the commands below and above are the same
         self.add_parameter(#query and write 
         'horizontal_mode_recordlength', label = 'Horizontal Mode Recordlength', unit = 'pts',
