@@ -5,6 +5,8 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from qcodes import validators as vals
 from qcodes.instrument import Instrument, VisaInstrument, InstrumentChannel
+from sqdtoolz.Utilities.FileIO import FileIOWriter
+
 # from qcodes.instrument_drivers.tektronix import TektronixDSA70000 
 
 
@@ -75,6 +77,18 @@ class RS_FSV_SAZ(VisaInstrument):
         plt.plot(n_x,wfm_data)
         plt.xlabel('Frequency (Hz)')
         plt.ylabel('Power (%s)'%self.CalculateUnitPower)
+        
+    def data2hdf5(self,filepath):
+        data_array=np.zeros((len(self.Y),1))
+        data_array[:,0]=self.Y
+        # data_array[:,1]=np.imag(self.Y)
+
+        param_names = ["Frequency (Hz)"]
+        param_vals = [self.X]
+        print(np.shape(param_vals))
+        # print(type(param_vals))
+        dep_param_names = ['Power (%s)'%self.CalculateUnitPower]
+        FileIOWriter.write_file_direct(filepath, data_array, param_names, param_vals, dep_param_names)        
 
     @property 
     def wfm_data(self):

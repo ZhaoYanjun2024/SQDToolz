@@ -5,6 +5,8 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from qcodes import validators as vals
 from qcodes.instrument import Instrument, VisaInstrument, InstrumentChannel
+from sqdtoolz.Utilities.FileIO import FileIOWriter
+
 # from qcodes.instrument_drivers.tektronix import TektronixDSA70000 
 
 
@@ -749,6 +751,19 @@ class TektronixDSA70804B(VisaInstrument):
         plt.xlabel('Time '+x_unit)
         plt.ylabel('Voltage '+y_unit)
         plt.show()
+
+    def data2hdf5(self,filepath):
+        data_array=np.zeros((len(self.Y),1))
+        data_array[:,0]=self.Y
+        # data_array[:,1]=np.imag(self.Y)
+
+        param_names = ["Time (s)"]
+        param_vals = [self.X]
+        print(np.shape(param_vals))
+        # print(type(param_vals))
+        dep_param_names = ['Voltage (V)']
+        FileIOWriter.write_file_direct(filepath, data_array, param_names, param_vals, dep_param_names)
+        
     def status_print(self):
 
         DataEncdg=self.DataEncdg
